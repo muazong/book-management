@@ -1,16 +1,26 @@
-import { useEffect, useRef } from 'react';
-import { Pages, PagePath } from '../../../../../enums';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Pages, PagePath } from '../../../../../enums';
 import usePageContext from '../../../../../hooks';
+
+const breakpoint = 768;
 
 function LargeScreenNav() {
   const { currentPage, setCurrentPage } = usePageContext();
+  const [isDesktop, setIsDesktop] = useState<boolean>(
+    window.innerWidth >= breakpoint,
+  );
 
   const navRef = useRef<HTMLUListElement>(null);
   const underlineRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (navRef.current && underlineRef.current) {
+    const handleResize = () => {
+      setIsDesktop(window.innerWidth >= breakpoint);
+    };
+    window.addEventListener('resize', handleResize);
+
+    if (isDesktop && navRef.current && underlineRef.current) {
       const activeItem = Array.from(navRef.current.children).find(
         (li) => li.textContent === currentPage,
       ) as HTMLLIElement | undefined;
@@ -20,7 +30,9 @@ function LargeScreenNav() {
         underlineRef.current.style.left = `${activeItem.offsetLeft}px`;
       }
     }
-  }, [currentPage]);
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, [currentPage, isDesktop]);
 
   return (
     <div className="relative hidden sm:block">
