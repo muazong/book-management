@@ -1,13 +1,16 @@
 import { Outlet } from 'react-router-dom';
 import Navbar from './components/Navbar';
+import { PageContextProvider } from './context/PageContextProvider';
 
 function App() {
   return (
-    <div className="bg-black-500 container mx-auto">
-      <Navbar />
-      <Outlet />
-      {/* <Footer /> */}
-    </div>
+    <PageContextProvider>
+      <div className="bg-black-500 container mx-auto">
+        <Navbar />
+        <Outlet />
+        {/* <Footer /> */}
+      </div>
+    </PageContextProvider>
   );
 }
 
