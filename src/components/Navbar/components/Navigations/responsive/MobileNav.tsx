@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Pages, PagePath } from '../../../../../enums';
-import usePageContext from '../../../../../hooks';
+import { PagePath, Pages } from '@/enums';
+import usePageContext from '@/hooks';
 
 function MobileNav() {
   const { setCurrentPage } = usePageContext();

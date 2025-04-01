@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import { PagePath, Pages } from '../../../../enums';
-import usePageContext from '../../../../hooks';
+import { PagePath, Pages } from '@/enums';
+import usePageContext from '@/hooks';
 
 function Logo() {
   const { setCurrentPage } = usePageContext();

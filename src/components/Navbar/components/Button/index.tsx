@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ButtonState } from '../../../../enums';
+import { ButtonState } from '@/enums';
 import Login from './Login';
 
 function Button() {

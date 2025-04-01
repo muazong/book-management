@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Pages, PagePath } from '../../../../../enums';
-import usePageContext from '../../../../../hooks';
+import { Pages, PagePath } from '@/enums';
+import usePageContext from '@/hooks';
 
 const breakpoint = 768;
 
