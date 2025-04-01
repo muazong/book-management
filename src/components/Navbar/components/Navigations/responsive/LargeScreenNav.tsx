@@ -1,13 +1,11 @@
 import { useEffect, useRef } from 'react';
 import { Pages, PagePath } from '../../../../../enums';
 import { Link } from 'react-router-dom';
+import usePageContext from '../../../../../hooks';
 
-type Props = {
-  currentPage: Pages;
-  setCurrentPage: (page: Pages) => void;
-};
+function LargeScreenNav() {
+  const { currentPage, setCurrentPage } = usePageContext();
 
-function LargeScreenNav({ currentPage, setCurrentPage }: Props) {
   const navRef = useRef<HTMLUListElement>(null);
   const underlineRef = useRef<HTMLDivElement>(null);
 
