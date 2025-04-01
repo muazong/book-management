@@ -2,10 +2,11 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import App from '../App';
 import HomePage from '../pages/HomePage';
+import { PagePath } from '../enums';
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: PagePath.Home,
     element: <App />,
     children: [
       {
@@ -13,11 +14,11 @@ const router = createBrowserRouter([
         element: <HomePage />,
       },
       {
-        path: 'allbooks',
+        path: PagePath.AllBooks,
         element: <h1 className="text-white">All Books</h1>,
       },
       {
-        path: 'about',
+        path: PagePath.AboutUs,
         element: <h1 className="text-white">About Page</h1>,
       },
     ],
