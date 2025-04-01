@@ -5,8 +5,8 @@ enum ButtonState {
 
 enum Pages {
   Home = 'Home',
-  AboutUs = 'About Us',
   AllBooks = 'All Books',
+  AboutUs = 'About Us',
 }
 
 export { ButtonState, Pages };
