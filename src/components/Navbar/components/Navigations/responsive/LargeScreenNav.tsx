@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Pages, PagePath } from '@/enums';
 import usePageContext from '@/hooks';
 
-const breakpoint = 768;
+const breakpoint = 640;
 
 function LargeScreenNav() {
   const { currentPage, setCurrentPage } = usePageContext();
