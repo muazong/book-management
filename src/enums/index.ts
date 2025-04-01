@@ -3,4 +3,10 @@ enum ButtonState {
   Signup = 'Signup',
 }
 
-export { ButtonState };
+enum Pages {
+  Home = 'Home',
+  AboutUs = 'About Us',
+  AllBooks = 'All Books',
+}
+
+export { ButtonState, Pages };
