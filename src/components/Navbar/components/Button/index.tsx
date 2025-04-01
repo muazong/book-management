@@ -7,7 +7,11 @@ function Button() {
     ButtonState.Login,
   );
 
-  return <div>{buttonState === ButtonState.Login && <Login />}</div>;
+  return (
+    <div className="hidden sm:block">
+      {buttonState === ButtonState.Login && <Login />}
+    </div>
+  );
 }
 
 export default Button;
