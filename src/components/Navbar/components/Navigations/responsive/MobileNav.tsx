@@ -1,17 +1,17 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Pages, PagePath } from '../../../../../enums';
+import usePageContext from '../../../../../hooks';
 
-type Props = {
-  isMenuOpen: boolean;
-  setIsMenuOpen: (value: boolean) => void;
-  setCurrentPageHandler: (page: Pages) => void;
-};
+function MobileNav() {
+  const { setCurrentPage } = usePageContext();
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
-function MobileNav({
-  isMenuOpen,
-  setIsMenuOpen,
-  setCurrentPageHandler,
-}: Props) {
+  const setCurrentPageHandler = (page: Pages) => {
+    setCurrentPage(page);
+    setIsMenuOpen(false);
+  };
+
   return (
     <div className="block sm:hidden">
       <button
