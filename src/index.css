@@ -7,10 +7,6 @@ body {
   padding: 8px;
 }
 
-.container {
-  margin: 0 auto;
-}
-
 @theme {
   --font-roboto: 'Roboto', sans-serif;
   --font-montserrat: 'Montserrat', sans-serif;
