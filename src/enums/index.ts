@@ -9,4 +9,10 @@ enum Pages {
   AboutUs = 'About Us',
 }
 
-export { ButtonState, Pages };
+enum PagePath {
+  Home = '/',
+  AllBooks = 'allBooks',
+  AboutUs = 'aboutUs',
+}
+
+export { ButtonState, Pages, PagePath };
