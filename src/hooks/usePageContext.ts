@@ -11,4 +11,4 @@ function usePageContext() {
   return { ...pageContext };
 }
 
-export default usePageContext;
+export { usePageContext };
