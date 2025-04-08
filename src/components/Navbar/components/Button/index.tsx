@@ -3,9 +3,7 @@ import { ButtonState } from '@/enums';
 import Login from './Login';
 
 function Button() {
-  const [buttonState, setButtonState] = useState<ButtonState>(
-    ButtonState.Login,
-  );
+  const [buttonState] = useState<ButtonState>(ButtonState.Login);
 
   return (
     <div className="hidden sm:block">
