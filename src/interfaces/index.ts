@@ -8,4 +8,9 @@ interface Book {
   image: string;
 }
 
-export { type Book };
+interface UserInfo {
+  email: string;
+  password: string;
+}
+
+export { type Book, type UserInfo };
