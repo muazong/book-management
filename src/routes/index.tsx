@@ -4,6 +4,7 @@ import App from '../App';
 import HomePage from '../pages/HomePage';
 import { PagePath } from '../enums';
 import AllBooks from '@/pages/AllBooks';
+import Detail from '@/pages/Detail';
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
       {
         path: PagePath.AllBooks,
         element: <AllBooks />,
+      },
+      {
+        path: `${PagePath.Detail}/:bookId`,
+        element: <Detail />,
       },
       {
         path: PagePath.AboutUs,
