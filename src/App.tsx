@@ -7,7 +7,9 @@ function App() {
     <PageContextProvider>
       <div className="bg-black-500 container mx-auto px-7">
         <Navbar />
-        <Outlet />
+        <main className="my-10">
+          <Outlet />
+        </main>
         {/* <Footer /> */}
       </div>
     </PageContextProvider>
