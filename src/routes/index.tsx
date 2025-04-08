@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import App from '../App';
 import HomePage from '../pages/HomePage';
 import { PagePath } from '../enums';
+import AllBooks from '@/pages/AllBooks';
 
 const router = createBrowserRouter([
   {
@@ -15,7 +16,7 @@ const router = createBrowserRouter([
       },
       {
         path: PagePath.AllBooks,
-        element: <h1 className="text-white">All Books</h1>,
+        element: <AllBooks />,
       },
       {
         path: PagePath.AboutUs,
