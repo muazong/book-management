@@ -6,7 +6,7 @@ class AppwriteDataBase {
   database;
 
   constructor() {
-    this.client.setEndpoint(conf.base_url).setProject(conf.project_id);
+    this.client.setEndpoint(conf.endpoint_id).setProject(conf.project_id);
     this.database = new Databases(this.client);
   }
 
