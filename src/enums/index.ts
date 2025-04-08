@@ -11,8 +11,9 @@ enum Pages {
 
 enum PagePath {
   Home = '/',
-  AllBooks = '/allBooks',
-  AboutUs = '/aboutUs',
+  AllBooks = '/all-books',
+  AboutUs = '/about-us',
+  Detail = '/detail',
 }
 
 export { ButtonState, Pages, PagePath };
