@@ -1,4 +1,5 @@
-import { Outlet } from 'react-router-dom';
+import Footer from './components/Footer';
+import Main from './components/Main';
 import Navbar from './components/Navbar';
 import { PageContextProvider } from './context/PageContextProvider';
 
@@ -7,10 +8,8 @@ function App() {
     <PageContextProvider>
       <div className="bg-black-500 container mx-auto px-7">
         <Navbar />
-        <main className="my-10">
-          <Outlet />
-        </main>
-        {/* <Footer /> */}
+        <Main />
+        <Footer />
       </div>
     </PageContextProvider>
   );
