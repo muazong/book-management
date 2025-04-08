@@ -5,7 +5,7 @@ import { PageContextProvider } from './context/PageContextProvider';
 function App() {
   return (
     <PageContextProvider>
-      <div className="bg-black-500 container mx-auto">
+      <div className="bg-black-500 container mx-auto px-7">
         <Navbar />
         <Outlet />
         {/* <Footer /> */}
