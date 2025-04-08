@@ -3,7 +3,9 @@ import { Rating } from '@smastrom/react-rating';
 import '@smastrom/react-rating/style.css';
 import { Book } from '@/interfaces';
 
-function BookCard({ id, title, rating, image }: Book) {
+type BookCardProps = Omit<Book, 'author' | 'content' | 'published'>;
+
+function BookCard({ id, title, rating, image }: BookCardProps) {
   return (
     <li
       key={id}
