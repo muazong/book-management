@@ -20,7 +20,7 @@ function PageContextProvider({ children }: PageContextProviderProps) {
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    const timeoutId = setTimeout(() => setLoading(false), 3000);
+    const timeoutId = setTimeout(() => setLoading(false), 1000);
     return () => clearTimeout(timeoutId);
   }, []);
 
