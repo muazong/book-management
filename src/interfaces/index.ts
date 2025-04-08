@@ -1,9 +1,10 @@
 interface Book {
   id: string;
   title: string;
-  content?: string;
+  author: string;
+  content: string;
   rating: number;
-  published?: string;
+  published: Date;
   image: string;
 }
 
