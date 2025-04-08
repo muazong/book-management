@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import { PagePath, Pages } from '@/enums';
-import usePageContext from '@/hooks';
+import { usePageContext } from '@/hooks';
 import { useEffect } from 'react';
 
 const navItems = [
