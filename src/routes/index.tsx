@@ -5,6 +5,7 @@ import HomePage from '../pages/HomePage';
 import { PagePath } from '../enums';
 import AllBooks from '@/pages/AllBooks';
 import Detail from '@/pages/Detail';
+import LoginPage from '@/pages/LoginPage';
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
         element: <h1 className="text-white">About Page</h1>,
       },
     ],
+  },
+  {
+    path: PagePath.Login,
+    element: <LoginPage />,
   },
 ]);
 
