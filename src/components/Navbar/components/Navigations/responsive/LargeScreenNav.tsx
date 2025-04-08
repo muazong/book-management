@@ -29,9 +29,7 @@ function LargeScreenNav() {
   }, [location.pathname, setCurrentPage]);
 
   useEffect(() => {
-    const handleResize = () => {
-      setIsDesktop(window.innerWidth >= breakpoint);
-    };
+    const handleResize = () => setIsDesktop(window.innerWidth >= breakpoint);
     window.addEventListener('resize', handleResize);
 
     if (isDesktop && navRef.current && underlineRef.current) {
