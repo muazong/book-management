@@ -2,9 +2,9 @@ import { ID } from 'appwrite';
 import { account } from './appwrite';
 
 class AuthService {
-  async register(email: string, password: string) {
+  async register(email: string, password: string, name: string) {
     try {
-      const response = await account.create(ID.unique(), email, password);
+      const response = await account.create(ID.unique(), email, password, name);
       return response;
     } catch (error) {
       const err = error as Error;
@@ -21,6 +21,7 @@ class AuthService {
     } catch (error) {
       const err = error as Error;
       console.error('logout() :: Failed to login :: ', err.message);
+      return { error: err.message };
     }
   }
   async logout() {
@@ -37,7 +38,7 @@ class AuthService {
       return response;
     } catch (error) {
       const err = error as Error;
-      console.error('logout() :: Failed to get current user :: ', err.message);
+      console.error('getUser() :: Failed to get current user :: ', err.message);
     }
   }
 }
