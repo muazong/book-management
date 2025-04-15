@@ -4,10 +4,14 @@ import { createContext, ReactNode, useEffect, useState } from 'react';
 
 interface AuthContextProps {
   user: Models.Session | Models.User<Models.Preferences> | null;
+  isRegistering: boolean;
+  errorMessage: string;
   setUser: (user: Models.Session | null) => void;
+  setIsRegistering: (value: boolean) => void;
+  setErrorMessage: (error: string) => void;
   logout: () => void;
   login: (email: string, password: string) => void;
-  register: (email: string, password: string) => void;
+  register: (email: string, password: string, name: string) => void;
 }
 
 interface AuthContextProviderProps {
@@ -20,14 +24,16 @@ function AuthContextProvider({ children }: AuthContextProviderProps) {
   const [user, setUser] = useState<
     Models.Session | Models.User<Models.Preferences> | null
   >(null);
+  const [isRegistering, setIsRegistering] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string>('');
 
   useEffect(() => {
     getUser();
   }, []);
 
-  const register = async (email: string, password: string) => {
+  const register = async (email: string, password: string, name: string) => {
     try {
-      const response = await authService.register(email, password);
+      const response = await authService.register(email, password, name);
       return response;
     } catch (error) {
       const err = error as Error;
@@ -47,16 +53,24 @@ function AuthContextProvider({ children }: AuthContextProviderProps) {
   const login = async (email: string, password: string) => {
     try {
       const response = await authService.login(email, password);
-      if (response) setUser(response);
+      if ('error' in response) {
+        setErrorMessage(response.error);
+      } else {
+        setUser(response);
+      }
     } catch (error) {
       const err = error as Error;
-      console.error('logout() :: Failed to login :: ', err.message);
+      console.error('logout() :: Failed to logout :: ', err.message);
     }
   };
   const getUser = async () => {
     try {
       const currentUser = await authService.getUser();
-      if (currentUser) setUser(currentUser);
+      if (currentUser) {
+        setUser(currentUser);
+      } else {
+        setUser(null);
+      }
     } catch (error) {
       const err = error as Error;
       console.error('logout() :: Failed to get current user :: ', err.message);
@@ -64,7 +78,19 @@ function AuthContextProvider({ children }: AuthContextProviderProps) {
   };
 
   return (
-    <AuthContext.Provider value={{ user, setUser, login, logout, register }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        setUser,
+        login,
+        logout,
+        register,
+        isRegistering,
+        setIsRegistering,
+        errorMessage,
+        setErrorMessage,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );
