@@ -1,11 +1,10 @@
 import { PagePath } from '@/enums';
 import { useAuthContext } from '@/hooks';
-import { UserInfo } from '@/interfaces';
 import { FormEvent, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function LoginPage() {
-  const { user, authLogin } = useAuthContext();
+  const { user, login } = useAuthContext();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -22,12 +21,7 @@ function LoginPage() {
     const email = formData.get('email')?.toString().trim() ?? '';
     const password = formData.get('password')?.toString().trim() ?? '';
 
-    const userInfo: UserInfo = {
-      email,
-      password,
-    };
-
-    authLogin(userInfo);
+    login(email, password);
   };
 
   return (

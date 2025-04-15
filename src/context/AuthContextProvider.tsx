@@ -1,13 +1,13 @@
-import appwriteAuth from '@/appwrite/auth';
-import { UserInfo } from '@/interfaces';
+import authService from '@/services/authService';
 import { Models } from 'appwrite';
 import { createContext, ReactNode, useEffect, useState } from 'react';
 
 interface AuthContextProps {
   user: Models.Session | Models.User<Models.Preferences> | null;
   setUser: (user: Models.Session | null) => void;
-  authLogout: () => void;
-  authLogin: (userInfo: UserInfo) => void;
+  logout: () => void;
+  login: (email: string, password: string) => void;
+  register: (email: string, password: string) => void;
 }
 
 interface AuthContextProviderProps {
@@ -22,40 +22,49 @@ function AuthContextProvider({ children }: AuthContextProviderProps) {
   >(null);
 
   useEffect(() => {
-    checkUserStatus();
+    getUser();
   }, []);
 
-  const authLogout = async () => {
+  const register = async (email: string, password: string) => {
     try {
-      await appwriteAuth.deleteSessions();
+      const response = await authService.register(email, password);
+      return response;
     } catch (error) {
-      console.error('authLogout() :: ', error);
+      const err = error as Error;
+      console.error('logout() :: Failed to register :: ', err.message);
+    }
+  };
+  const logout = async () => {
+    try {
+      await authService.logout();
+    } catch (error) {
+      const err = error as Error;
+      console.error('logout() :: Failed to logout :: ', err.message);
     } finally {
       setUser(null);
     }
   };
-  const authLogin = async (userInfo: UserInfo) => {
+  const login = async (email: string, password: string) => {
     try {
-      await appwriteAuth.deleteSessions();
-      const response = await appwriteAuth.createUser(userInfo);
-
+      const response = await authService.login(email, password);
       if (response) setUser(response);
     } catch (error) {
-      console.error('authLogin() :: ', error);
+      const err = error as Error;
+      console.error('logout() :: Failed to login :: ', err.message);
     }
   };
-  const checkUserStatus = async () => {
+  const getUser = async () => {
     try {
-      const currentUser = await appwriteAuth.getCurrentUser();
-
+      const currentUser = await authService.getUser();
       if (currentUser) setUser(currentUser);
     } catch (error) {
-      console.error('checkUserStatus() :: ', error);
+      const err = error as Error;
+      console.error('logout() :: Failed to get current user :: ', err.message);
     }
   };
 
   return (
-    <AuthContext.Provider value={{ user, setUser, authLogout, authLogin }}>
+    <AuthContext.Provider value={{ user, setUser, login, logout, register }}>
       {children}
     </AuthContext.Provider>
   );
